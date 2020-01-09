@@ -16,8 +16,7 @@ pageSoup = BeautifulSoup(pageTree.content, 'html.parser')
 leagues = pageSoup.find_all("a", href=re.compile("/startseite/wettbewerb/"), title=re.compile("."))
 
 #'#':playersNum, 'Jogador':playersName, 'Posição':playersPos, 'Data Nascimento':playersDate, 'Nacionalidade':playersNat
-#df = pd.DataFrame(columns=['Num', 'Jogador', 'Posicao', 'Data_Nascimento', 'Nacionalidade'])
-lst = []
+df = pd.DataFrame(columns=['Num', 'Jogador', 'Posicao', 'Data_Nascimento', 'Nacionalidade'])
 #print(df)
 #get teams page by league (0=Premier League ... 5=Liga NOS)
 for league in leagues:
@@ -88,9 +87,8 @@ for league in leagues:
             if i == 1:
                 break
         #print(playersName)
-        lst[i] = (playersNum)
         break
-    #playersDic = {'Num':playersNum, 'Jogador':playersName, 'Posicao':playersPos, 'Data_Nascimento':playersDate, 'Nacionalidade':playersNat}
+    playersDic = {'Num':playersNum, 'Jogador':playersName, 'Posicao':playersPos, 'Data_Nascimento':playersDate, 'Nacionalidade':playersNat}
     #print(playersDic)
     df = df.append(playersDic, ignore_index=True)
     print(df)
